@@ -20,6 +20,16 @@
                     fontFamily: {
                         heading: ['Poppins', 'sans-serif'],
                         sans: ['Fredoka', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            gold: '#f59e0b',
+                            purple: '#8b5cf6',
+                            emerald: '#10b981',
+                            rose: '#f43f5e',
+                            dark: '#0f172a',
+                            card: '#1e293b'
+                        }
                     }
                 }
             }
@@ -34,11 +44,13 @@
         }
 
         .card-eval {
+            background: #1e293b;
+            border-width: 2px;
             box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
             border-radius: 1.25rem;
-            transition: transform 0.2s ease;
         }
 
+        /* Estilos Drag & Drop */
         .drag-item {
             cursor: grab;
             user-select: none;
@@ -58,14 +70,6 @@
 
         .correct-bg { background-color: #064e3b !important; border-color: #10b981 !important; color: #a7f3d0 !important; }
         .incorrect-bg { background-color: #881337 !important; border-color: #f43f5e !important; color: #fecdd3 !important; }
-
-        @keyframes bounce-gentle {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-6px); }
-        }
-        .animate-mascot {
-            animation: bounce-gentle 3s ease-in-out infinite;
-        }
     </style>
 </head>
 <body class="text-slate-100 min-h-screen flex flex-col font-sans pb-16">
@@ -77,16 +81,16 @@
                 <span class="text-3xl text-amber-400">🎯</span>
                 <div>
                     <h1 class="text-2xl sm:text-3xl font-heading font-extrabold tracking-wider text-amber-400 uppercase leading-none">
-                        Misión: Indicativo vs. Subjuntivo
+                        Misión: Modo Indicativo vs. Subjuntivo
                     </h1>
                     <p class="text-xs font-semibold text-slate-400 mt-1">
-                        Evaluación Interactiva • 30 Puntos Totales
+                        Evaluación Interactiva • 30 Puntos Totales (6 por módulo)
                     </p>
                 </div>
             </div>
             <div class="flex items-center gap-2 bg-slate-800 border border-slate-700 px-4 py-2 rounded-xl">
                 <i class="fa-solid fa-trophy text-amber-400 text-lg"></i>
-                <span id="global-score" class="font-heading font-bold text-amber-300 text-lg">0 / 30 pts</span>
+                <span id="global-score" class="font-heading font-bold text-amber-300">0 / 30 pts</span>
             </div>
         </div>
     </header>
@@ -94,49 +98,37 @@
     <main class="max-w-4xl mx-auto px-4 py-8 flex-grow w-full space-y-10">
 
         <!-- ========================================================= -->
-        <!-- ACTIVIDAD 1: COLOR VIOLETA / PURPURA + REPRODUCTOR DE AUDIO -->
+        <!-- ACTIVIDAD 1: COMPRENSIÓN AUDITIVA (PÚRPURA) -->
         <!-- ========================================================= -->
-        <section class="card-eval bg-purple-950/40 border-2 border-purple-500/50 p-6 sm:p-8 space-y-6">
+        <section class="card-eval border-purple-500/40 p-6 sm:p-8 space-y-6">
             <div class="flex items-center justify-between border-b border-purple-500/30 pb-4">
                 <div class="flex items-center gap-4">
-                    <!-- Personaje Animado Avatar 1 -->
-                    <div class="relative shrink-0">
-                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=AudioOwl&backgroundColor=8b5cf6" alt="Mascota Audio" class="w-16 h-16 rounded-2xl bg-purple-900/80 p-1.5 border-2 border-purple-400 shadow-md animate-mascot">
-                        <span class="absolute -bottom-1 -right-1 bg-purple-500 text-white rounded-full p-1 text-xs leading-none">🎧</span>
+                    <!-- Personaje Animado Actividad 1 -->
+                    <div class="relative w-14 h-14 bg-purple-600/30 rounded-2xl border border-purple-400/50 flex items-center justify-center shrink-0 shadow-lg">
+                        <span class="text-3xl animate-bounce">🤖</span>
+                        <span class="absolute -bottom-1 -right-1 bg-purple-500 text-white text-[10px] p-1 rounded-full"><i class="fa-solid fa-headphones"></i></span>
                     </div>
                     <div>
-                        <h2 class="text-xl sm:text-2xl font-heading font-bold text-purple-300">Actividad 1: Laboratorio Auditivo</h2>
-                        <p class="text-xs text-purple-200/80">Escucha el archivo de audio y selecciona la opción correcta.</p>
+                        <h2 class="text-xl sm:text-2xl font-heading text-purple-300">Actividad 1: Laboratorio Auditivo</h2>
+                        <p class="text-xs text-slate-400">Escucha el archivo de audio y selecciona la opción correcta.</p>
                     </div>
                 </div>
-                <span class="bg-purple-900/80 text-purple-200 text-xs px-3 py-1.5 rounded-full border border-purple-400 font-bold shrink-0">6 Puntos</span>
+                <span class="bg-purple-900/60 text-purple-300 text-xs px-3 py-1 rounded-full border border-purple-500/40 font-bold">6 Puntos</span>
             </div>
 
-           <!-- Reproductor de Audio -->
-        <!-- Reproductor de Audio -->
-        <div class="bg-purple-900/30 p-4 rounded-xl border border-purple-500/30 flex items-center justify-center">
-        <audio controls src="https://raw.githubusercontent.com/profESbo200/evaluacion-1/main/audio_test.mp3" class="w-full max-w-xl h-12 accent-purple-500 rounded-lg">
-        Tu navegador no soporta la reproducción de este audio.
-        </audio>
-        </div>
-        <!-- 1. Enlace relativo (si el archivo MP3 está en la misma carpeta que el HTML) -->
-        <source src="audio_test.mp3" type="audio/mpeg">
-        <source src="./audio_test.mp3" type="audio/mpeg">
-        
-        <!-- 2. Alternativa por si el archivo tiene mayúscula en el nombre -->
-        <source src="Audio_test.mp3" type="audio/mpeg">
-        
-        Tu navegador no soporta la reproducción de este audio.
-    </audio>
-</div>
+            <!-- Reproductor de Audio Límpido y Funcional -->
+            <div class="bg-purple-950/40 p-4 rounded-xl border border-purple-500/30 flex items-center justify-center">
+                <audio controls src="audio_test.mp3" class="w-full max-w-xl h-12 accent-purple-500 rounded-lg">
+                </audio>
+            </div>
 
             <!-- Transcripción Ocultable -->
-            <details class="bg-slate-900/70 rounded-xl border border-purple-500/30 transition">
+            <details class="bg-slate-900/60 rounded-xl border border-purple-900/50 transition">
                 <summary class="p-3 text-xs font-bold text-purple-300 cursor-pointer flex items-center justify-between select-none">
                     <span><i class="fa-solid fa-eye text-purple-400 mr-2"></i> Mostrar / Ocultar Transcripción de Apoyo</span>
-                    <i class="fa-solid fa-chevron-down text-purple-400"></i>
+                    <i class="fa-solid fa-chevron-down text-slate-500"></i>
                 </summary>
-                <div class="p-4 border-t border-purple-500/20 text-sm text-slate-300 italic leading-relaxed">
+                <div class="p-4 border-t border-purple-900/40 text-sm text-slate-300 italic leading-relaxed">
                     "Hoy es un día de bastantes preparativos en casa. Mi hermano está de viaje, pero ojalá él vuelva esta semana. 
                     Mientras tanto, en la familia hay varios planes: mi esposa insiste en que yo me afeite la barba antes de la cena, 
                     y también necesito que mis hijos ordenen su cuarto antes de salir. Por mi parte, yo busco una casa más grande y barata para las vacaciones. 
@@ -144,126 +136,124 @@
                 </div>
             </details>
 
-            <!-- 6 Preguntas basadas en el texto auditivo -->
+            <!-- 6 Ejercicios -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-purple-500/20 space-y-2">
-                    <p class="text-sm font-semibold">1. Ojalá mi hermano <span class="text-purple-300 font-bold">______</span> esta semana.</p>
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-purple-900/40 space-y-2">
+                    <p class="text-sm font-semibold">1. Ojalá mi hermano <span class="text-purple-300">______</span> esta semana.</p>
                     <div class="grid grid-cols-2 gap-2 text-xs">
-                        <button onclick="checkMCQ(this, 'act1-1', false)" class="act1-1 bg-purple-900/20 hover:bg-purple-800/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">A) vuelve</button>
-                        <button onclick="checkMCQ(this, 'act1-1', true)" class="act1-1 bg-purple-900/20 hover:bg-purple-800/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">B) vuelva</button>
+                        <button onclick="checkMCQ(this, 'act1-1', false)" class="act1-1 bg-slate-800 hover:bg-purple-900/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">A) vuelve</button>
+                        <button onclick="checkMCQ(this, 'act1-1', true)" class="act1-1 bg-slate-800 hover:bg-purple-900/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">B) vuelva</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-purple-500/20 space-y-2">
-                    <p class="text-sm font-semibold">2. Quiero que Fran <span class="text-purple-300 font-bold">______</span> la barba.</p>
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-purple-900/40 space-y-2">
+                    <p class="text-sm font-semibold">2. Quiero que Fran <span class="text-purple-300">______</span> la barba.</p>
                     <div class="grid grid-cols-2 gap-2 text-xs">
-                        <button onclick="checkMCQ(this, 'act1-2', true)" class="act1-2 bg-purple-900/20 hover:bg-purple-800/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">A) se afeite</button>
-                        <button onclick="checkMCQ(this, 'act1-2', false)" class="act1-2 bg-purple-900/20 hover:bg-purple-800/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">B) se afeita</button>
+                        <button onclick="checkMCQ(this, 'act1-2', true)" class="act1-2 bg-slate-800 hover:bg-purple-900/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">A) se afeite</button>
+                        <button onclick="checkMCQ(this, 'act1-2', false)" class="act1-2 bg-slate-800 hover:bg-purple-900/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">B) se afeita</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-purple-500/20 space-y-2">
-                    <p class="text-sm font-semibold">3. Necesito que mis hijos <span class="text-purple-300 font-bold">______</span> su cuarto.</p>
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-purple-900/40 space-y-2">
+                    <p class="text-sm font-semibold">3. Necesito que mis hijos <span class="text-purple-300">______</span> su cuarto.</p>
                     <div class="grid grid-cols-2 gap-2 text-xs">
-                        <button onclick="checkMCQ(this, 'act1-3', false)" class="act1-3 bg-purple-900/20 hover:bg-purple-800/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">A) ordenan</button>
-                        <button onclick="checkMCQ(this, 'act1-3', true)" class="act1-3 bg-purple-900/20 hover:bg-purple-800/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">B) ordenen</button>
+                        <button onclick="checkMCQ(this, 'act1-3', false)" class="act1-3 bg-slate-800 hover:bg-purple-900/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">A) ordenan</button>
+                        <button onclick="checkMCQ(this, 'act1-3', true)" class="act1-3 bg-slate-800 hover:bg-purple-900/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">B) ordenen</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-purple-500/20 space-y-2">
-                    <p class="text-sm font-semibold">4. Yo <span class="text-purple-300 font-bold">______</span> una casa grande y barata.</p>
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-purple-900/40 space-y-2">
+                    <p class="text-sm font-semibold">4. Yo <span class="text-purple-300">______</span> una casa grande y barata.</p>
                     <div class="grid grid-cols-2 gap-2 text-xs">
-                        <button onclick="checkMCQ(this, 'act1-4', true)" class="act1-4 bg-purple-900/20 hover:bg-purple-800/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">A) busco</button>
-                        <button onclick="checkMCQ(this, 'act1-4', false)" class="act1-4 bg-purple-900/20 hover:bg-purple-800/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">B) busque</button>
+                        <button onclick="checkMCQ(this, 'act1-4', true)" class="act1-4 bg-slate-800 hover:bg-purple-900/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">A) busco</button>
+                        <button onclick="checkMCQ(this, 'act1-4', false)" class="act1-4 bg-slate-800 hover:bg-purple-900/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">B) busque</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-purple-500/20 space-y-2">
-                    <p class="text-sm font-semibold">5. Ojalá nosotros <span class="text-purple-300 font-bold">______</span> el curso pronto.</p>
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-purple-900/40 space-y-2">
+                    <p class="text-sm font-semibold">5. Ojalá nosotros <span class="text-purple-300">______</span> el curso pronto.</p>
                     <div class="grid grid-cols-2 gap-2 text-xs">
-                        <button onclick="checkMCQ(this, 'act1-5', true)" class="act1-5 bg-purple-900/20 hover:bg-purple-800/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">A) terminemos</button>
-                        <button onclick="checkMCQ(this, 'act1-5', false)" class="act1-5 bg-purple-900/20 hover:bg-purple-800/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">B) terminamos</button>
+                        <button onclick="checkMCQ(this, 'act1-5', true)" class="act1-5 bg-slate-800 hover:bg-purple-900/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">A) terminemos</button>
+                        <button onclick="checkMCQ(this, 'act1-5', false)" class="act1-5 bg-slate-800 hover:bg-purple-900/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">B) terminamos</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-purple-500/20 space-y-2">
-                    <p class="text-sm font-semibold">6. Es probable que nosotros nos <span class="text-purple-300 font-bold">______</span> a Cádiz.</p>
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-purple-900/40 space-y-2">
+                    <p class="text-sm font-semibold">6. Es probable que nosotros nos <span class="text-purple-300">______</span> a Cádiz.</p>
                     <div class="grid grid-cols-2 gap-2 text-xs">
-                        <button onclick="checkMCQ(this, 'act1-6', false)" class="act1-6 bg-purple-900/20 hover:bg-purple-800/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">A) mudamos</button>
-                        <button onclick="checkMCQ(this, 'act1-6', true)" class="act1-6 bg-purple-900/20 hover:bg-purple-800/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">B) mudemos</button>
+                        <button onclick="checkMCQ(this, 'act1-6', false)" class="act1-6 bg-slate-800 hover:bg-purple-900/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">A) mudamos</button>
+                        <button onclick="checkMCQ(this, 'act1-6', true)" class="act1-6 bg-slate-800 hover:bg-purple-900/40 py-2 px-3 rounded-lg border border-purple-500/30 transition text-left">B) mudemos</button>
                     </div>
                 </div>
-
             </div>
         </section>
 
 
         <!-- ========================================================= -->
-        <!-- ACTIVIDAD 2: COLOR AMBAR / DORADO + PERSONAJE              -->
+        <!-- ACTIVIDAD 2: DISCERNIR (DORADO / ÁMBAR) -->
         <!-- ========================================================= -->
-        <section class="card-eval bg-amber-950/40 border-2 border-amber-500/50 p-6 sm:p-8 space-y-6">
+        <section class="card-eval border-amber-500/40 p-6 sm:p-8 space-y-6">
             <div class="flex items-center justify-between border-b border-amber-500/30 pb-4">
                 <div class="flex items-center gap-4">
-                    <!-- Personaje Animado Avatar 2 -->
-                    <div class="relative shrink-0">
-                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=ScaleRobot&backgroundColor=f59e0b" alt="Mascota Balanza" class="w-16 h-16 rounded-2xl bg-amber-900/80 p-1.5 border-2 border-amber-400 shadow-md animate-mascot">
-                        <span class="absolute -bottom-1 -right-1 bg-amber-500 text-slate-900 rounded-full p-1 text-xs leading-none">⚖️</span>
+                    <!-- Personaje Animado Actividad 2 -->
+                    <div class="relative w-14 h-14 bg-amber-600/30 rounded-2xl border border-amber-400/50 flex items-center justify-center shrink-0 shadow-lg">
+                        <span class="text-3xl animate-pulse">🦊</span>
+                        <span class="absolute -bottom-1 -right-1 bg-amber-500 text-slate-900 text-[10px] p-1 rounded-full"><i class="fa-solid fa-scale-balanced"></i></span>
                     </div>
                     <div>
-                        <h2 class="text-xl sm:text-2xl font-heading font-bold text-amber-300">Actividad 2: Balanza de Certeza e Intención</h2>
-                        <p class="text-xs text-amber-200/80">¿Expresa una certeza (Indicativo) o deseo/duda (Subjuntivo)?</p>
+                        <h2 class="text-xl sm:text-2xl font-heading text-amber-300">Actividad 2: Balanza de Certeza</h2>
+                        <p class="text-xs text-slate-400">¿Expresa una realidad/creencia (Indicativo) o deseo/duda (Subjuntivo)?</p>
                     </div>
                 </div>
-                <span class="bg-amber-900/80 text-amber-200 text-xs px-3 py-1.5 rounded-full border border-amber-400 font-bold shrink-0">6 Puntos</span>
+                <span class="bg-amber-900/60 text-amber-300 text-xs px-3 py-1 rounded-full border border-amber-500/40 font-bold">6 Puntos</span>
             </div>
 
             <div class="space-y-3">
-                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-amber-500/20 flex flex-wrap items-center justify-between gap-3">
-                    <p class="text-sm font-medium">1. Nosotros creemos que ella <span class="text-amber-300 font-bold">(es / sea)</span> la mejor.</p>
+                <div class="bg-slate-900/50 p-3.5 rounded-xl border border-amber-900/40 flex flex-wrap items-center justify-between gap-3">
+                    <p class="text-sm font-medium">1. Nosotros creemos que ella <span class="text-amber-400 font-bold">(es / sea)</span> la mejor.</p>
                     <div class="flex gap-2">
-                        <button onclick="checkDiscern(this, 'IND', 'IND')" class="px-3 py-1.5 bg-amber-950/50 hover:bg-amber-800/50 rounded-lg text-xs font-bold border border-amber-500/40 transition">INDICATIVO</button>
-                        <button onclick="checkDiscern(this, 'SUB', 'IND')" class="px-3 py-1.5 bg-amber-950/50 hover:bg-amber-800/50 rounded-lg text-xs font-bold border border-amber-500/40 transition">SUBJUNTIVO</button>
+                        <button onclick="checkDiscern(this, 'IND', 'IND')" class="px-3 py-1.5 bg-slate-800 hover:bg-amber-900/40 rounded-lg text-xs font-bold border border-amber-500/30 transition">INDICATIVO</button>
+                        <button onclick="checkDiscern(this, 'SUB', 'IND')" class="px-3 py-1.5 bg-slate-800 hover:bg-amber-900/40 rounded-lg text-xs font-bold border border-amber-500/30 transition">SUBJUNTIVO</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-amber-500/20 flex flex-wrap items-center justify-between gap-3">
-                    <p class="text-sm font-medium">2. Espero que Gonzalo <span class="text-amber-300 font-bold">(puede / pueda)</span> ir a mi fiesta.</p>
+                <div class="bg-slate-900/50 p-3.5 rounded-xl border border-amber-900/40 flex flex-wrap items-center justify-between gap-3">
+                    <p class="text-sm font-medium">2. Espero que Gonzalo <span class="text-amber-400 font-bold">(puede / pueda)</span> ir a mi fiesta.</p>
                     <div class="flex gap-2">
-                        <button onclick="checkDiscern(this, 'IND', 'SUB')" class="px-3 py-1.5 bg-amber-950/50 hover:bg-amber-800/50 rounded-lg text-xs font-bold border border-amber-500/40 transition">INDICATIVO</button>
-                        <button onclick="checkDiscern(this, 'SUB', 'SUB')" class="px-3 py-1.5 bg-amber-950/50 hover:bg-amber-800/50 rounded-lg text-xs font-bold border border-amber-500/40 transition">SUBJUNTIVO</button>
+                        <button onclick="checkDiscern(this, 'IND', 'SUB')" class="px-3 py-1.5 bg-slate-800 hover:bg-amber-900/40 rounded-lg text-xs font-bold border border-amber-500/30 transition">INDICATIVO</button>
+                        <button onclick="checkDiscern(this, 'SUB', 'SUB')" class="px-3 py-1.5 bg-slate-800 hover:bg-amber-900/40 rounded-lg text-xs font-bold border border-amber-500/30 transition">SUBJUNTIVO</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-amber-500/20 flex flex-wrap items-center justify-between gap-3">
-                    <p class="text-sm font-medium">3. Es verdad que tu ciudad <span class="text-amber-300 font-bold">(es / sea)</span> más grande.</p>
+                <div class="bg-slate-900/50 p-3.5 rounded-xl border border-amber-900/40 flex flex-wrap items-center justify-between gap-3">
+                    <p class="text-sm font-medium">3. Es verdad que tu ciudad <span class="text-amber-400 font-bold">(es / sea)</span> más grande.</p>
                     <div class="flex gap-2">
-                        <button onclick="checkDiscern(this, 'IND', 'IND')" class="px-3 py-1.5 bg-amber-950/50 hover:bg-amber-800/50 rounded-lg text-xs font-bold border border-amber-500/40 transition">INDICATIVO</button>
-                        <button onclick="checkDiscern(this, 'SUB', 'IND')" class="px-3 py-1.5 bg-amber-950/50 hover:bg-amber-800/50 rounded-lg text-xs font-bold border border-amber-500/40 transition">SUBJUNTIVO</button>
+                        <button onclick="checkDiscern(this, 'IND', 'IND')" class="px-3 py-1.5 bg-slate-800 hover:bg-amber-900/40 rounded-lg text-xs font-bold border border-amber-500/30 transition">INDICATIVO</button>
+                        <button onclick="checkDiscern(this, 'SUB', 'IND')" class="px-3 py-1.5 bg-slate-800 hover:bg-amber-900/40 rounded-lg text-xs font-bold border border-amber-500/30 transition">SUBJUNTIVO</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-amber-500/20 flex flex-wrap items-center justify-between gap-3">
-                    <p class="text-sm font-medium">4. No creo que el Atlético <span class="text-amber-300 font-bold">(gana / gane)</span> la liga.</p>
+                <div class="bg-slate-900/50 p-3.5 rounded-xl border border-amber-900/40 flex flex-wrap items-center justify-between gap-3">
+                    <p class="text-sm font-medium">4. No creo que el Atlético <span class="text-amber-400 font-bold">(gana / gane)</span> la liga.</p>
                     <div class="flex gap-2">
-                        <button onclick="checkDiscern(this, 'IND', 'SUB')" class="px-3 py-1.5 bg-amber-950/50 hover:bg-amber-800/50 rounded-lg text-xs font-bold border border-amber-500/40 transition">INDICATIVO</button>
-                        <button onclick="checkDiscern(this, 'SUB', 'SUB')" class="px-3 py-1.5 bg-amber-950/50 hover:bg-amber-800/50 rounded-lg text-xs font-bold border border-amber-500/40 transition">SUBJUNTIVO</button>
+                        <button onclick="checkDiscern(this, 'IND', 'SUB')" class="px-3 py-1.5 bg-slate-800 hover:bg-amber-900/40 rounded-lg text-xs font-bold border border-amber-500/30 transition">INDICATIVO</button>
+                        <button onclick="checkDiscern(this, 'SUB', 'SUB')" class="px-3 py-1.5 bg-slate-800 hover:bg-amber-900/40 rounded-lg text-xs font-bold border border-amber-500/30 transition">SUBJUNTIVO</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-amber-500/20 flex flex-wrap items-center justify-between gap-3">
-                    <p class="text-sm font-medium">5. Pienso que tú <span class="text-amber-300 font-bold">(debes / debas)</span> hacer eso sin mí.</p>
+                <div class="bg-slate-900/50 p-3.5 rounded-xl border border-amber-900/40 flex flex-wrap items-center justify-between gap-3">
+                    <p class="text-sm font-medium">5. Pienso que tú <span class="text-amber-400 font-bold">(debes / debas)</span> hacer eso sin mí.</p>
                     <div class="flex gap-2">
-                        <button onclick="checkDiscern(this, 'IND', 'IND')" class="px-3 py-1.5 bg-amber-950/50 hover:bg-amber-800/50 rounded-lg text-xs font-bold border border-amber-500/40 transition">INDICATIVO</button>
-                        <button onclick="checkDiscern(this, 'SUB', 'IND')" class="px-3 py-1.5 bg-amber-950/50 hover:bg-amber-800/50 rounded-lg text-xs font-bold border border-amber-500/40 transition">SUBJUNTIVO</button>
+                        <button onclick="checkDiscern(this, 'IND', 'IND')" class="px-3 py-1.5 bg-slate-800 hover:bg-amber-900/40 rounded-lg text-xs font-bold border border-amber-500/30 transition">INDICATIVO</button>
+                        <button onclick="checkDiscern(this, 'SUB', 'IND')" class="px-3 py-1.5 bg-slate-800 hover:bg-amber-900/40 rounded-lg text-xs font-bold border border-amber-500/30 transition">SUBJUNTIVO</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-amber-500/20 flex flex-wrap items-center justify-between gap-3">
-                    <p class="text-sm font-medium">6. Necesito que tú me <span class="text-amber-300 font-bold">(ayudas / ayudes)</span> con los verbos.</p>
+                <div class="bg-slate-900/50 p-3.5 rounded-xl border border-amber-900/40 flex flex-wrap items-center justify-between gap-3">
+                    <p class="text-sm font-medium">6. Necesito que tú me <span class="text-amber-400 font-bold">(ayudas / ayudes)</span> con los verbos.</p>
                     <div class="flex gap-2">
-                        <button onclick="checkDiscern(this, 'IND', 'SUB')" class="px-3 py-1.5 bg-amber-950/50 hover:bg-amber-800/50 rounded-lg text-xs font-bold border border-amber-500/40 transition">INDICATIVO</button>
-                        <button onclick="checkDiscern(this, 'SUB', 'SUB')" class="px-3 py-1.5 bg-amber-950/50 hover:bg-amber-800/50 rounded-lg text-xs font-bold border border-amber-500/40 transition">SUBJUNTIVO</button>
+                        <button onclick="checkDiscern(this, 'IND', 'SUB')" class="px-3 py-1.5 bg-slate-800 hover:bg-amber-900/40 rounded-lg text-xs font-bold border border-amber-500/30 transition">INDICATIVO</button>
+                        <button onclick="checkDiscern(this, 'SUB', 'SUB')" class="px-3 py-1.5 bg-slate-800 hover:bg-amber-900/40 rounded-lg text-xs font-bold border border-amber-500/30 transition">SUBJUNTIVO</button>
                     </div>
                 </div>
             </div>
@@ -271,201 +261,195 @@
 
 
         <!-- ========================================================= -->
-        <!-- ACTIVIDAD 3: COLOR ESMERALDA / VERDE + PERSONAJE           -->
+        <!-- ACTIVIDAD 3: DETECTIVES (ESMERALDA / VERDE) -->
         <!-- ========================================================= -->
-        <section class="card-eval bg-emerald-950/40 border-2 border-emerald-500/50 p-6 sm:p-8 space-y-6">
+        <section class="card-eval border-emerald-500/40 p-6 sm:p-8 space-y-6">
             <div class="flex items-center justify-between border-b border-emerald-500/30 pb-4">
                 <div class="flex items-center gap-4">
-                    <!-- Personaje Animado Avatar 3 -->
-                    <div class="relative shrink-0">
-                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=DetectiveBot&backgroundColor=10b981" alt="Mascota Detective" class="w-16 h-16 rounded-2xl bg-emerald-900/80 p-1.5 border-2 border-emerald-400 shadow-md animate-mascot">
-                        <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-slate-900 rounded-full p-1 text-xs leading-none">🔍</span>
+                    <!-- Personaje Animado Actividad 3 -->
+                    <div class="relative w-14 h-14 bg-emerald-600/30 rounded-2xl border border-emerald-400/50 flex items-center justify-center shrink-0 shadow-lg">
+                        <span class="text-3xl animate-bounce">🕵️‍♂️</span>
+                        <span class="absolute -bottom-1 -right-1 bg-emerald-500 text-slate-900 text-[10px] p-1 rounded-full"><i class="fa-solid fa-magnifying-glass"></i></span>
                     </div>
                     <div>
-                        <h2 class="text-xl sm:text-2xl font-heading font-bold text-emerald-300">Actividad 3: Detectives del Conector</h2>
-                        <p class="text-xs text-emerald-200/80">Identifica la regla gramatical que exige el modo correspondiente.</p>
+                        <h2 class="text-xl sm:text-2xl font-heading text-emerald-300">Actividad 3: Detectives del Conector</h2>
+                        <p class="text-xs text-slate-400">Identifica la regla o desencadenante gramatical.</p>
                     </div>
                 </div>
-                <span class="bg-emerald-900/80 text-emerald-200 text-xs px-3 py-1.5 rounded-full border border-emerald-400 font-bold shrink-0">6 Puntos</span>
+                <span class="bg-emerald-900/60 text-emerald-300 text-xs px-3 py-1 rounded-full border border-emerald-500/40 font-bold">6 Puntos</span>
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-emerald-500/20 space-y-2">
-                    <p class="text-xs font-semibold">1. «Cuando nosotros <strong class="text-emerald-300">salgamos</strong> ya será de noche.»</p>
-                    <p class="text-[11px] text-emerald-200/70">¿Por qué usamos Subjuntivo con 'Cuando'?</p>
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-emerald-900/40 space-y-2">
+                    <p class="text-xs font-semibold">1. «Cuando nosotros <strong class="text-emerald-400">salgamos</strong> ya será de noche.»</p>
+                    <p class="text-[11px] text-slate-400">¿Por qué usamos Subjuntivo con 'Cuando'?</p>
                     <div class="space-y-1.5 text-xs">
-                        <button onclick="checkTrigger(this, 'act3-1', true)" class="act3-1 w-full text-left bg-emerald-950/40 hover:bg-emerald-800/40 p-2 rounded-lg border border-emerald-500/30 transition">A) Refiere a una acción futura no realizada.</button>
-                        <button onclick="checkTrigger(this, 'act3-1', false)" class="act3-1 w-full text-left bg-emerald-950/40 hover:bg-emerald-800/40 p-2 rounded-lg border border-emerald-500/30 transition">B) Expresa un hábito diario o rutina.</button>
+                        <button onclick="checkTrigger(this, 'act3-1', true)" class="act3-1 w-full text-left bg-slate-800 hover:bg-emerald-900/40 p-2 rounded-lg border border-emerald-500/30 transition">A) Acciones futuras no realizadas.</button>
+                        <button onclick="checkTrigger(this, 'act3-1', false)" class="act3-1 w-full text-left bg-slate-800 hover:bg-emerald-900/40 p-2 rounded-lg border border-emerald-500/30 transition">B) Hábitos diarios o rutinas.</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-emerald-500/20 space-y-2">
-                    <p class="text-xs font-semibold">2. «No creo que el Atlético <strong class="text-emerald-300">gane</strong> la liga.»</p>
-                    <p class="text-[11px] text-emerald-200/70">¿Qué desencadena el uso del subjuntivo?</p>
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-emerald-900/40 space-y-2">
+                    <p class="text-xs font-semibold">2. «No creo que el Atlético <strong class="text-emerald-400">gane</strong> la liga.»</p>
+                    <p class="text-[11px] text-slate-400">¿Qué desencadena el subjuntivo?</p>
                     <div class="space-y-1.5 text-xs">
-                        <button onclick="checkTrigger(this, 'act3-2', true)" class="act3-2 w-full text-left bg-emerald-950/40 hover:bg-emerald-800/40 p-2 rounded-lg border border-emerald-500/30 transition">A) Negación de verbo de opinión ("No creo que").</button>
-                        <button onclick="checkTrigger(this, 'act3-2', false)" class="act3-2 w-full text-left bg-emerald-950/40 hover:bg-emerald-800/40 p-2 rounded-lg border border-emerald-500/30 transition">B) Declaración de afirmación o certeza.</button>
+                        <button onclick="checkTrigger(this, 'act3-2', true)" class="act3-2 w-full text-left bg-slate-800 hover:bg-emerald-900/40 p-2 rounded-lg border border-emerald-500/30 transition">A) Negación de verbo de opinión ("No creo que").</button>
+                        <button onclick="checkTrigger(this, 'act3-2', false)" class="act3-2 w-full text-left bg-slate-800 hover:bg-emerald-900/40 p-2 rounded-lg border border-emerald-500/30 transition">B) Declaración de afirmación o certeza.</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-emerald-500/20 space-y-2">
-                    <p class="text-xs font-semibold">3. «Necesito que tú me <strong class="text-emerald-300">ayudes</strong>.»</p>
-                    <p class="text-[11px] text-emerald-200/70">La estructura 'Necesitar + que + sujeto 2':</p>
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-emerald-900/40 space-y-2">
+                    <p class="text-xs font-semibold">3. «Necesito que tú me <strong class="text-emerald-400">ayudes</strong>.»</p>
+                    <p class="text-[11px] text-slate-400">Estructura 'Necesitar + que + sujeto 2':</p>
                     <div class="space-y-1.5 text-xs">
-                        <button onclick="checkTrigger(this, 'act3-3', false)" class="act3-3 w-full text-left bg-emerald-950/40 hover:bg-emerald-800/40 p-2 rounded-lg border border-emerald-500/30 transition">A) Requiere Indicativo por ser una certeza.</button>
-                        <button onclick="checkTrigger(this, 'act3-3', true)" class="act3-3 w-full text-left bg-emerald-950/40 hover:bg-emerald-800/40 p-2 rounded-lg border border-emerald-500/30 transition">B) Exige Subjuntivo por petición/influencia.</button>
+                        <button onclick="checkTrigger(this, 'act3-3', false)" class="act3-3 w-full text-left bg-slate-800 hover:bg-emerald-900/40 p-2 rounded-lg border border-emerald-500/30 transition">A) Indicativo por ser una certeza.</button>
+                        <button onclick="checkTrigger(this, 'act3-3', true)" class="act3-3 w-full text-left bg-slate-800 hover:bg-emerald-900/40 p-2 rounded-lg border border-emerald-500/30 transition">B) Subjuntivo por petición/influencia.</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-emerald-500/20 space-y-2">
-                    <p class="text-xs font-semibold">4. «Ojalá Ramón <strong class="text-emerald-300">acabe</strong> pronto.»</p>
-                    <p class="text-[11px] text-emerald-200/70">La partícula 'Ojalá' requiere:</p>
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-emerald-900/40 space-y-2">
+                    <p class="text-xs font-semibold">4. «Ojalá Ramón <strong class="text-emerald-400">acabe</strong> pronto.»</p>
+                    <p class="text-[11px] text-slate-400">La partícula 'Ojalá' requiere:</p>
                     <div class="space-y-1.5 text-xs">
-                        <button onclick="checkTrigger(this, 'act3-4', true)" class="act3-4 w-full text-left bg-emerald-950/40 hover:bg-emerald-800/40 p-2 rounded-lg border border-emerald-500/30 transition">A) Subjuntivo por expresar un deseo explícito.</button>
-                        <button onclick="checkTrigger(this, 'act3-4', false)" class="act3-4 w-full text-left bg-emerald-950/40 hover:bg-emerald-800/40 p-2 rounded-lg border border-emerald-500/30 transition">B) Indicativo para afirmar hechos presentes.</button>
+                        <button onclick="checkTrigger(this, 'act3-4', true)" class="act3-4 w-full text-left bg-slate-800 hover:bg-emerald-900/40 p-2 rounded-lg border border-emerald-500/30 transition">A) Subjuntivo por expresar un deseo explícito.</button>
+                        <button onclick="checkTrigger(this, 'act3-4', false)" class="act3-4 w-full text-left bg-slate-800 hover:bg-emerald-900/40 p-2 rounded-lg border border-emerald-500/30 transition">B) Indicativo para afirmar hechos presentes.</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-emerald-500/20 space-y-2">
-                    <p class="text-xs font-semibold">5. «Cuando Fernando <strong class="text-emerald-300">compre</strong> los billetes me avisará.»</p>
-                    <p class="text-[11px] text-emerald-200/70">El conector 'Cuando' lleva subjuntivo porque:</p>
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-emerald-900/40 space-y-2">
+                    <p class="text-xs font-semibold">5. «Cuando Fernando <strong class="text-emerald-400">compre</strong> los billetes avisará.»</p>
+                    <p class="text-[11px] text-slate-400">El conector 'Cuando' lleva subjuntivo porque:</p>
                     <div class="space-y-1.5 text-xs">
-                        <button onclick="checkTrigger(this, 'act3-5', true)" class="act3-5 w-full text-left bg-emerald-950/40 hover:bg-emerald-800/40 p-2 rounded-lg border border-emerald-500/30 transition">A) Es una condición temporal futura hipotética.</button>
-                        <button onclick="checkTrigger(this, 'act3-5', false)" class="act3-5 w-full text-left bg-emerald-950/40 hover:bg-emerald-800/40 p-2 rounded-lg border border-emerald-500/30 transition">B) Ocurrió en el pasado de forma repetida.</button>
+                        <button onclick="checkTrigger(this, 'act3-5', true)" class="act3-5 w-full text-left bg-slate-800 hover:bg-emerald-900/40 p-2 rounded-lg border border-emerald-500/30 transition">A) Es una condición temporal futura hipotética.</button>
+                        <button onclick="checkTrigger(this, 'act3-5', false)" class="act3-5 w-full text-left bg-slate-800 hover:bg-emerald-900/40 p-2 rounded-lg border border-emerald-500/30 transition">B) Ocurrió en el pasado de forma repetida.</button>
                     </div>
                 </div>
 
-                <div class="bg-slate-900/60 p-4 rounded-xl border border-emerald-500/20 space-y-2">
-                    <p class="text-xs font-semibold">6. «Julián, no <strong class="text-emerald-300">hables</strong> con desconocidos.»</p>
-                    <p class="text-[11px] text-emerald-200/70">El uso de 'hables' se debe a:</p>
+                <div class="bg-slate-900/50 p-4 rounded-xl border border-emerald-900/40 space-y-2">
+                    <p class="text-xs font-semibold">6. «Julián, no <strong class="text-emerald-400">hables</strong> con desconocidos.»</p>
+                    <p class="text-[11px] text-slate-400">El uso de 'hables' se debe a:</p>
                     <div class="space-y-1.5 text-xs">
-                        <button onclick="checkTrigger(this, 'act3-6', true)" class="act3-6 w-full text-left bg-emerald-950/40 hover:bg-emerald-800/40 p-2 rounded-lg border border-emerald-500/30 transition">A) Mandato negativo (Imperativo negativo con subjuntivo).</button>
-                        <button onclick="checkTrigger(this, 'act3-6', false)" class="act3-6 w-full text-left bg-emerald-950/40 hover:bg-emerald-800/40 p-2 rounded-lg border border-emerald-500/30 transition">B) Expresión de hipótesis sobre el presente.</button>
+                        <button onclick="checkTrigger(this, 'act3-6', true)" class="act3-6 w-full text-left bg-slate-800 hover:bg-emerald-900/40 p-2 rounded-lg border border-emerald-500/30 transition">A) Mandato negativo (Imperativo negativo con subjuntivo).</button>
+                        <button onclick="checkTrigger(this, 'act3-6', false)" class="act3-6 w-full text-left bg-slate-800 hover:bg-emerald-900/40 p-2 rounded-lg border border-emerald-500/30 transition">B) Expresión de hipótesis sobre el presente.</button>
                     </div>
                 </div>
-
             </div>
         </section>
 
 
         <!-- ========================================================= -->
-        <!-- ACTIVIDAD 4: COLOR ROSA / CORAL + PERSONAJE                -->
+        <!-- ACTIVIDAD 4: CLASIFICADOR ARRASTRABLE (CORAL / ROSA) -->
         <!-- ========================================================= -->
-        <section class="card-eval bg-rose-950/40 border-2 border-rose-500/50 p-6 sm:p-8 space-y-6">
+        <section class="card-eval border-rose-500/40 p-6 sm:p-8 space-y-6">
             <div class="flex items-center justify-between border-b border-rose-500/30 pb-4">
                 <div class="flex items-center gap-4">
-                    <!-- Personaje Animado Avatar 4 -->
-                    <div class="relative shrink-0">
-                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=SorterRobot&backgroundColor=f43f5e" alt="Mascota Clasificador" class="w-16 h-16 rounded-2xl bg-rose-900/80 p-1.5 border-2 border-rose-400 shadow-md animate-mascot">
-                        <span class="absolute -bottom-1 -right-1 bg-rose-500 text-white rounded-full p-1 text-xs leading-none">📦</span>
+                    <!-- Personaje Animado Actividad 4 -->
+                    <div class="relative w-14 h-14 bg-rose-600/30 rounded-2xl border border-rose-400/50 flex items-center justify-center shrink-0 shadow-lg">
+                        <span class="text-3xl animate-pulse">👾</span>
+                        <span class="absolute -bottom-1 -right-1 bg-rose-500 text-white text-[10px] p-1 rounded-full"><i class="fa-solid fa-hand-pointer"></i></span>
                     </div>
                     <div>
-                        <h2 class="text-xl sm:text-2xl font-heading font-bold text-rose-300">Actividad 4: Clasificador Arrastrable</h2>
-                        <p class="text-xs text-rose-200/80">Arrastra cada tarjeta a su contenedor o haz clic sobre ella para clasificarla.</p>
+                        <h2 class="text-xl sm:text-2xl font-heading text-rose-300">Actividad 4: Clasificador Drag & Drop</h2>
+                        <p class="text-xs text-slate-400">Arrastra cada tarjeta a su contenedor o haz clic para enviar.</p>
                     </div>
                 </div>
-                <span class="bg-rose-900/80 text-rose-200 text-xs px-3 py-1.5 rounded-full border border-rose-400 font-bold shrink-0">6 Puntos</span>
+                <span class="bg-rose-900/60 text-rose-300 text-xs px-3 py-1 rounded-full border border-rose-500/40 font-bold">6 Puntos</span>
             </div>
 
-            <!-- Contenedor de Tarjetas Arrastrables -->
-            <div id="card-deck" class="flex flex-wrap gap-2 justify-center bg-slate-900/70 p-4 rounded-xl border border-rose-500/30 min-h-[90px]">
-                
-                <div id="card-1" draggable="true" ondragstart="drag(event)" onclick="quickSort(this, 'IND')" data-cat="IND" class="drag-item bg-rose-950/60 hover:bg-rose-900/80 border border-rose-400/50 text-rose-100 text-xs px-3 py-2 rounded-lg font-medium shadow transition">
+            <!-- Baraja de Tarjetas (6 Ejercicios) -->
+            <div id="card-deck" class="flex flex-wrap gap-2 justify-center bg-slate-900/60 p-4 rounded-xl border border-rose-900/40 min-h-[90px]">
+                <div id="card-1" draggable="true" ondragstart="drag(event)" onclick="quickSort(this, 'IND')" data-cat="IND" class="drag-item bg-slate-800 hover:bg-rose-900/30 border border-rose-400/40 text-rose-200 text-xs px-3 py-2 rounded-lg font-medium shadow transition">
                     Eva nunca (bañarse) en el mar.
                 </div>
-                <div id="card-2" draggable="true" ondragstart="drag(event)" onclick="quickSort(this, 'SUB')" data-cat="SUB" class="drag-item bg-rose-950/60 hover:bg-rose-900/80 border border-rose-400/50 text-rose-100 text-xs px-3 py-2 rounded-lg font-medium shadow transition">
+                <div id="card-2" draggable="true" ondragstart="drag(event)" onclick="quickSort(this, 'SUB')" data-cat="SUB" class="drag-item bg-slate-800 hover:bg-rose-900/30 border border-rose-400/40 text-rose-200 text-xs px-3 py-2 rounded-lg font-medium shadow transition">
                     Ojalá Ramón (acabar) pronto.
                 </div>
-                <div id="card-3" draggable="true" ondragstart="drag(event)" onclick="quickSort(this, 'IND')" data-cat="IND" class="drag-item bg-rose-950/60 hover:bg-rose-900/80 border border-rose-400/50 text-rose-100 text-xs px-3 py-2 rounded-lg font-medium shadow transition">
+                <div id="card-3" draggable="true" ondragstart="drag(event)" onclick="quickSort(this, 'IND')" data-cat="IND" class="drag-item bg-slate-800 hover:bg-rose-900/30 border border-rose-400/40 text-rose-200 text-xs px-3 py-2 rounded-lg font-medium shadow transition">
                     Pienso que tú (deber) hacer eso.
                 </div>
-                <div id="card-4" draggable="true" ondragstart="drag(event)" onclick="quickSort(this, 'SUB')" data-cat="SUB" class="drag-item bg-rose-950/60 hover:bg-rose-900/80 border border-rose-400/50 text-rose-100 text-xs px-3 py-2 rounded-lg font-medium shadow transition">
+                <div id="card-4" draggable="true" ondragstart="drag(event)" onclick="quickSort(this, 'SUB')" data-cat="SUB" class="drag-item bg-slate-800 hover:bg-rose-900/30 border border-rose-400/40 text-rose-200 text-xs px-3 py-2 rounded-lg font-medium shadow transition">
                     Cuando Fernando (comprar) los billetes avisará.
                 </div>
-                <div id="card-5" draggable="true" ondragstart="drag(event)" onclick="quickSort(this, 'IND')" data-cat="IND" class="drag-item bg-rose-950/60 hover:bg-rose-900/80 border border-rose-400/50 text-rose-100 text-xs px-3 py-2 rounded-lg font-medium shadow transition">
+                <div id="card-5" draggable="true" ondragstart="drag(event)" onclick="quickSort(this, 'IND')" data-cat="IND" class="drag-item bg-slate-800 hover:bg-rose-900/30 border border-rose-400/40 text-rose-200 text-xs px-3 py-2 rounded-lg font-medium shadow transition">
                     Yo no soy rico, pero (tener) todo.
                 </div>
-                <div id="card-6" draggable="true" ondragstart="drag(event)" onclick="quickSort(this, 'SUB')" data-cat="SUB" class="drag-item bg-rose-950/60 hover:bg-rose-900/80 border border-rose-400/50 text-rose-100 text-xs px-3 py-2 rounded-lg font-medium shadow transition">
+                <div id="card-6" draggable="true" ondragstart="drag(event)" onclick="quickSort(this, 'SUB')" data-cat="SUB" class="drag-item bg-slate-800 hover:bg-rose-900/30 border border-rose-400/40 text-rose-200 text-xs px-3 py-2 rounded-lg font-medium shadow transition">
                     Es probable que nosotros (mudarse) a Cádiz.
                 </div>
-
             </div>
 
-            <!-- Zonas de Soltar (Dropzones) -->
+            <!-- Zonas de Soltar -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                
-                <div id="drop-IND" ondrop="drop(event, 'IND')" ondragover="allowDrop(event)" class="drop-zone bg-slate-900/80 border-2 border-dashed border-sky-500/50 rounded-xl p-4 flex flex-col items-center space-y-3 min-h-[140px]">
+                <div id="drop-IND" ondrop="drop(event, 'IND')" ondragover="allowDrop(event)" class="drop-zone bg-slate-900/90 border-2 border-dashed border-sky-500/40 rounded-xl p-4 flex flex-col items-center space-y-3 min-h-[140px]">
                     <h3 class="font-heading font-bold text-sky-400 text-sm flex items-center gap-2">
-                        <i class="fa-solid fa-check text-base"></i> INDICATIVO (Hechos / Certezas)
+                        <i class="fa-solid fa-check text-base"></i> INDICATIVO (Hechos / Realidades)
                     </h3>
                     <div id="col-indicativo" class="w-full space-y-2"></div>
                 </div>
 
-                <div id="drop-SUB" ondrop="drop(event, 'SUB')" ondragover="allowDrop(event)" class="drop-zone bg-slate-900/80 border-2 border-dashed border-purple-500/50 rounded-xl p-4 flex flex-col items-center space-y-3 min-h-[140px]">
+                <div id="drop-SUB" ondrop="drop(event, 'SUB')" ondragover="allowDrop(event)" class="drop-zone bg-slate-900/90 border-2 border-dashed border-purple-500/40 rounded-xl p-4 flex flex-col items-center space-y-3 min-h-[140px]">
                     <h3 class="font-heading font-bold text-purple-400 text-sm flex items-center gap-2">
                         <i class="fa-solid fa-wand-magic-sparkles text-base"></i> SUBJUNTIVO (Deseos / Probabilidades)
                     </h3>
                     <div id="col-subjuntivo" class="w-full space-y-2"></div>
                 </div>
-
             </div>
         </section>
 
 
         <!-- ========================================================= -->
-        <!-- ACTIVIDAD 5: COLOR AZUL / CIAN + PERSONAJE                 -->
+        <!-- ACTIVIDAD 5: CONJUGACIÓN MAESTRA (AZUL / CELESTE) -->
         <!-- ========================================================= -->
-        <section class="card-eval bg-sky-950/40 border-2 border-sky-500/50 p-6 sm:p-8 space-y-6">
-            <div class="flex items-center justify-between border-b border-sky-500/30 pb-4">
+        <section class="card-eval border-blue-500/40 p-6 sm:p-8 space-y-6">
+            <div class="flex items-center justify-between border-b border-blue-500/30 pb-4">
                 <div class="flex items-center gap-4">
-                    <!-- Personaje Animado Avatar 5 -->
-                    <div class="relative shrink-0">
-                        <img src="https://api.dicebear.com/7.x/bottts/svg?seed=WriterBot&backgroundColor=0284c7" alt="Mascota Escritor" class="w-16 h-16 rounded-2xl bg-sky-900/80 p-1.5 border-2 border-sky-400 shadow-md animate-mascot">
-                        <span class="absolute -bottom-1 -right-1 bg-sky-500 text-white rounded-full p-1 text-xs leading-none">✍️</span>
+                    <!-- Personaje Animado Actividad 5 -->
+                    <div class="relative w-14 h-14 bg-blue-600/30 rounded-2xl border border-blue-400/50 flex items-center justify-center shrink-0 shadow-lg">
+                        <span class="text-3xl animate-bounce">🧙‍♂️</span>
+                        <span class="absolute -bottom-1 -right-1 bg-blue-500 text-white text-[10px] p-1 rounded-full"><i class="fa-solid fa-keyboard"></i></span>
                     </div>
                     <div>
-                        <h2 class="text-xl sm:text-2xl font-heading font-bold text-sky-300">Actividad 5: Conjugación Maestra</h2>
-                        <p class="text-xs text-sky-200/80">Escribe la forma verbal exacta para completar cada oración.</p>
+                        <h2 class="text-xl sm:text-2xl font-heading text-blue-300">Actividad 5: Conjugación Maestra</h2>
+                        <p class="text-xs text-slate-400">Escribe la forma verbal exacta para cada oración.</p>
                     </div>
                 </div>
-                <span class="bg-sky-900/80 text-sky-200 text-xs px-3 py-1.5 rounded-full border border-sky-400 font-bold shrink-0">6 Puntos</span>
+                <span class="bg-blue-900/60 text-blue-300 text-xs px-3 py-1 rounded-full border border-blue-500/40 font-bold">6 Puntos</span>
             </div>
 
             <div class="space-y-3">
-                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-sky-500/20 flex flex-wrap items-center justify-between gap-3">
-                    <label for="q5-1" class="text-sm font-medium">1. Yo no soy rico, pero <span class="text-sky-300 font-bold">(tener)</span> todo lo necesario.</label>
-                    <input type="text" id="q5-1" data-ans="tengo" placeholder="Escribe aquí" class="bg-slate-800 border-2 border-sky-500/40 rounded-lg px-3 py-1.5 text-sky-200 w-36 text-center font-bold text-sm focus:outline-none focus:border-sky-400">
+                <div class="bg-slate-900/50 p-3.5 rounded-xl border border-blue-900/40 flex flex-wrap items-center justify-between gap-3">
+                    <label for="q5-1" class="text-sm font-medium">1. Yo no soy rico, pero <span class="text-blue-400 font-bold">(tener)</span> todo lo necesario.</label>
+                    <input type="text" id="q5-1" data-ans="tengo" placeholder="Escribe aquí" class="bg-slate-800 border-2 border-blue-500/30 rounded-lg px-3 py-1.5 text-blue-300 w-36 text-center font-bold text-sm focus:outline-none focus:border-blue-400">
                 </div>
 
-                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-sky-500/20 flex flex-wrap items-center justify-between gap-3">
-                    <label for="q5-2" class="text-sm font-medium">2. Cuando <span class="text-sky-300 font-bold">(correr)</span> mucho tiempo me duele la rodilla.</label>
-                    <input type="text" id="q5-2" data-ans="corro" placeholder="Escribe aquí" class="bg-slate-800 border-2 border-sky-500/40 rounded-lg px-3 py-1.5 text-sky-200 w-36 text-center font-bold text-sm focus:outline-none focus:border-sky-400">
+                <div class="bg-slate-900/50 p-3.5 rounded-xl border border-blue-900/40 flex flex-wrap items-center justify-between gap-3">
+                    <label for="q5-2" class="text-sm font-medium">2. Cuando <span class="text-blue-400 font-bold">(correr)</span> mucho tiempo me duele la rodilla.</label>
+                    <input type="text" id="q5-2" data-ans="corro" placeholder="Escribe aquí" class="bg-slate-800 border-2 border-blue-500/30 rounded-lg px-3 py-1.5 text-blue-300 w-36 text-center font-bold text-sm focus:outline-none focus:border-blue-400">
                 </div>
 
-                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-sky-500/20 flex flex-wrap items-center justify-between gap-3">
-                    <label for="q5-3" class="text-sm font-medium">3. Cuando nosotros <span class="text-sky-300 font-bold">(ir)</span> al cine solemos dormirme.</label>
-                    <input type="text" id="q5-3" data-ans="vamos" placeholder="Escribe aquí" class="bg-slate-800 border-2 border-sky-500/40 rounded-lg px-3 py-1.5 text-sky-200 w-36 text-center font-bold text-sm focus:outline-none focus:border-sky-400">
+                <div class="bg-slate-900/50 p-3.5 rounded-xl border border-blue-900/40 flex flex-wrap items-center justify-between gap-3">
+                    <label for="q5-3" class="text-sm font-medium">3. Cuando nosotros <span class="text-blue-400 font-bold">(ir)</span> al cine solemos dormirme.</label>
+                    <input type="text" id="q5-3" data-ans="vamos" placeholder="Escribe aquí" class="bg-slate-800 border-2 border-blue-500/30 rounded-lg px-3 py-1.5 text-blue-300 w-36 text-center font-bold text-sm focus:outline-none focus:border-blue-400">
                 </div>
 
-                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-sky-500/20 flex flex-wrap items-center justify-between gap-3">
-                    <label for="q5-4" class="text-sm font-medium">4. Julián, no <span class="text-sky-300 font-bold">(hablar)</span> con desconocidos.</label>
-                    <input type="text" id="q5-4" data-ans="hables" placeholder="Escribe aquí" class="bg-slate-800 border-2 border-sky-500/40 rounded-lg px-3 py-1.5 text-sky-200 w-36 text-center font-bold text-sm focus:outline-none focus:border-sky-400">
+                <div class="bg-slate-900/50 p-3.5 rounded-xl border border-blue-900/40 flex flex-wrap items-center justify-between gap-3">
+                    <label for="q5-4" class="text-sm font-medium">4. Julián, no <span class="text-blue-400 font-bold">(hablar)</span> con desconocidos.</label>
+                    <input type="text" id="q5-4" data-ans="hables" placeholder="Escribe aquí" class="bg-slate-800 border-2 border-blue-500/30 rounded-lg px-3 py-1.5 text-blue-300 w-36 text-center font-bold text-sm focus:outline-none focus:border-blue-400">
                 </div>
 
-                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-sky-500/20 flex flex-wrap items-center justify-between gap-3">
-                    <label for="q5-5" class="text-sm font-medium">5. Eva nunca <span class="text-sky-300 font-bold">(bañarse)</span> en el mar.</label>
-                    <input type="text" id="q5-5" data-ans="se baña" placeholder="Escribe aquí" class="bg-slate-800 border-2 border-sky-500/40 rounded-lg px-3 py-1.5 text-sky-200 w-36 text-center font-bold text-sm focus:outline-none focus:border-sky-400">
+                <div class="bg-slate-900/50 p-3.5 rounded-xl border border-blue-900/40 flex flex-wrap items-center justify-between gap-3">
+                    <label for="q5-5" class="text-sm font-medium">5. Eva nunca <span class="text-blue-400 font-bold">(bañarse)</span> en el mar.</label>
+                    <input type="text" id="q5-5" data-ans="se baña" placeholder="Escribe aquí" class="bg-slate-800 border-2 border-blue-500/30 rounded-lg px-3 py-1.5 text-blue-300 w-36 text-center font-bold text-sm focus:outline-none focus:border-blue-400">
                 </div>
 
-                <div class="bg-slate-900/60 p-3.5 rounded-xl border border-sky-500/20 flex flex-wrap items-center justify-between gap-3">
-                    <label for="q5-6" class="text-sm font-medium">6. Ojalá Ramón <span class="text-sky-300 font-bold">(acabar)</span> pronto de corregir.</label>
-                    <input type="text" id="q5-6" data-ans="acabe" placeholder="Escribe aquí" class="bg-slate-800 border-2 border-sky-500/40 rounded-lg px-3 py-1.5 text-sky-200 w-36 text-center font-bold text-sm focus:outline-none focus:border-sky-400">
+                <div class="bg-slate-900/50 p-3.5 rounded-xl border border-blue-900/40 flex flex-wrap items-center justify-between gap-3">
+                    <label for="q5-6" class="text-sm font-medium">6. Ojalá Ramón <span class="text-blue-400 font-bold">(acabar)</span> pronto de corregir.</label>
+                    <input type="text" id="q5-6" data-ans="acabe" placeholder="Escribe aquí" class="bg-slate-800 border-2 border-blue-500/30 rounded-lg px-3 py-1.5 text-blue-300 w-36 text-center font-bold text-sm focus:outline-none focus:border-blue-400">
                 </div>
             </div>
 
             <div class="pt-4 flex justify-center">
-                <button onclick="checkFillIn()" class="bg-sky-600 hover:bg-sky-500 text-white font-bold px-8 py-3 rounded-xl shadow-lg transition flex items-center gap-2">
+                <button onclick="checkFillIn()" class="bg-blue-600 hover:bg-blue-500 text-white font-bold px-8 py-3 rounded-xl shadow-lg transition flex items-center gap-2">
                     <i class="fa-solid fa-paper-plane"></i> Validar Respuestas Finales
                 </button>
             </div>
@@ -473,7 +457,6 @@
 
     </main>
 
-    <!-- Script de Lógica de la Evaluación -->
     <script>
         let scores = { act1: 0, act2: 0, act3: 0, act4: 0, act5: 0 };
 
@@ -486,7 +469,7 @@
             }
         }
 
-        /* --- LÓGICA DE ACTIVIDADES 1, 2 Y 3 --- */
+        /* --- LÓGICA ACTIVIDAD 1 --- */
         function checkMCQ(btn, groupClass, isCorrect) {
             const buttons = document.querySelectorAll(`.${groupClass}`);
             buttons.forEach(b => {
@@ -495,16 +478,17 @@
             });
 
             if (isCorrect) {
-                btn.classList.remove('opacity-50');
+                btn.classList.remove('opacity-50', 'bg-slate-800');
                 btn.classList.add('correct-bg');
                 scores.act1++;
             } else {
-                btn.classList.remove('opacity-50');
+                btn.classList.remove('opacity-50', 'bg-slate-800');
                 btn.classList.add('incorrect-bg');
             }
             updateGlobalScore();
         }
 
+        /* --- LÓGICA ACTIVIDAD 2 --- */
         function checkDiscern(btn, chosen, correct) {
             const parent = btn.parentElement;
             const buttons = parent.querySelectorAll('button');
@@ -519,6 +503,7 @@
             updateGlobalScore();
         }
 
+        /* --- LÓGICA ACTIVIDAD 3 --- */
         function checkTrigger(btn, groupClass, isCorrect) {
             const buttons = document.querySelectorAll(`.${groupClass}`);
             buttons.forEach(b => b.disabled = true);
@@ -532,7 +517,7 @@
             updateGlobalScore();
         }
 
-        /* --- DRAG & DROP + CLICK PARA CLASIFICAR --- */
+        /* --- LÓGICA DRAG & DROP (ACTIVIDAD 4) --- */
         function allowDrop(ev) {
             ev.preventDefault();
             ev.currentTarget.classList.add('drag-over');
@@ -578,7 +563,7 @@
             updateGlobalScore();
         }
 
-        /* --- VALIDACIÓN ACTIVIDAD 5 (COMPLETAR) --- */
+        /* --- LÓGICA ACTIVIDAD 5 (COMPLETAR) --- */
         function normalizeText(str) {
             return str.toLowerCase().trim().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
         }
@@ -606,4 +591,3 @@
     </script>
 </body>
 </html>
-```
